@@ -26,4 +26,8 @@ jobs:
         cmake ../OpenXcom -DCMAKE_BUILD_TYPE=Release -DDEV_BUILD=OFF -DBUILD_PACKAGE=OFF
         make -j4
         ls -l bin
-      
+    - name: archive
+      uses: actions/upload-artifact@v4
+      with:
+        name: openxcom-arm
+        path: open-xcom-build/bin
