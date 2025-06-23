@@ -7,17 +7,20 @@ jobs:
     container: debian:sid-slim
     steps:
     # from https://openxcom.org/forum/index.php/topic,7048.0.html
-    - run: |
-      apt update -qqy
-      apt install -qqy git cmake build-essential libsdl1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-gfx1.2-dev zlib1g-dev
-    - run: |
-      git clone https://github.com/jbeder/yaml-cpp -b yaml-cpp-0.6.3
-      mkdir yaml-cpp-build
-      cmake ../yaml-cpp -DCMAKE_BUILD_TYPE=Release -DYAML_CPP_BUILD_CONTRIB=OFF -DYAML_CPP_BUILD_TESTS=OFF -DYAML_CPP_BUILD_TOOLS=OFF
-      make install
-    - run: |
-      git clone https://github.com/MeridianOXC/OpenXcom.git
-      mkdir open-xcom-build
-      cmake ../OpenXcom -DCMAKE_BUILD_TYPE=Release -DDEV_BUILD=OFF -DBUILD_PACKAGE=OFF
-      make -j4
+    - name: get package
+      run: |
+        apt update -qqy
+        apt install -qqy git cmake build-essential libsdl1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-gfx1.2-dev zlib1g-dev
+    - name: build yaml-cpp
+      run: |
+        git clone https://github.com/jbeder/yaml-cpp -b yaml-cpp-0.6.3
+        mkdir yaml-cpp-build
+        cmake ../yaml-cpp -DCMAKE_BUILD_TYPE=Release -DYAML_CPP_BUILD_CONTRIB=OFF -DYAML_CPP_BUILD_TESTS=OFF -DYAML_CPP_BUILD_TOOLS=OFF
+        make install
+    - name: build openxcom
+      run: |
+        git clone https://github.com/MeridianOXC/OpenXcom.git
+        mkdir open-xcom-build
+        cmake ../OpenXcom -DCMAKE_BUILD_TYPE=Release -DDEV_BUILD=OFF -DBUILD_PACKAGE=OFF
+        make -j4
       
