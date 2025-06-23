@@ -25,4 +25,5 @@ jobs:
         cd open-xcom-build
         cmake ../OpenXcom -DCMAKE_BUILD_TYPE=Release -DDEV_BUILD=OFF -DBUILD_PACKAGE=OFF
         make -j4
+        ls -l ../bin
       
