@@ -15,12 +15,14 @@ jobs:
       run: |
         git clone https://github.com/jbeder/yaml-cpp -b yaml-cpp-0.6.3
         mkdir yaml-cpp-build
+        cd mkdir yaml-cpp-build
         cmake ../yaml-cpp -DCMAKE_BUILD_TYPE=Release -DYAML_CPP_BUILD_CONTRIB=OFF -DYAML_CPP_BUILD_TESTS=OFF -DYAML_CPP_BUILD_TOOLS=OFF
         make install
     - name: build openxcom
       run: |
         git clone https://github.com/MeridianOXC/OpenXcom.git
         mkdir open-xcom-build
+        cd open-xcom-build
         cmake ../OpenXcom -DCMAKE_BUILD_TYPE=Release -DDEV_BUILD=OFF -DBUILD_PACKAGE=OFF
         make -j4
       
