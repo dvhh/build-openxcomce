@@ -15,7 +15,7 @@ jobs:
       run: |
         git clone https://github.com/jbeder/yaml-cpp -b yaml-cpp-0.6.3
         mkdir yaml-cpp-build
-        cd mkdir yaml-cpp-build
+        cd yaml-cpp-build
         cmake ../yaml-cpp -DCMAKE_BUILD_TYPE=Release -DYAML_CPP_BUILD_CONTRIB=OFF -DYAML_CPP_BUILD_TESTS=OFF -DYAML_CPP_BUILD_TOOLS=OFF
         make install
     - name: build openxcom
